@@ -67,9 +67,9 @@ class Workflow extends retryable_execution_1.default {
     }
     async buildPage() {
         const browser = await this.getOrBuildBrowser();
-        this.logger.debug('Initializing browser page...');
+        this.logger.debug('Initializing browser page...');if(process.env.PROXY_SERVER){await browser.defaultBrowserContext().overridePermissions(`https://ais.usvisa-info.com`,[]);}
         const [page] = await browser.pages();
-        page.setDefaultTimeout(this.config.defaultPuppeteerTimeout);
+        page.setDefaultTimeout(this.config.defaultPuppeteerTimeout);if(process.env.PROXY_SERVER){await page.authenticate({username:process.env.PROXY_USERNAME,password:process.env.PROXY_PASSWORD});}
         return page;
     }
     async getOrBuildBrowser() {
@@ -86,7 +86,7 @@ class Workflow extends retryable_execution_1.default {
     buildBrowserOptions() {
         if (process.env.BROWSERLESS_API_KEY) {
             return {
-                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_API_KEY}&stealth=true&--proxy-server=socks5://${process.env.PROXY_USERNAME}:${process.env.PROXY_PASSWORD}@${process.env.PROXY_SERVER}`,
+                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_API_KEY}&stealth=true`,
             };
         }
         return {
