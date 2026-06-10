@@ -14,9 +14,12 @@ class NavigateToGroupAppointmentWorkflowCommand extends workflow_command_1.defau
     async retryableExecute() {
         await this.page.waitForSelector('body.groups');
         const { visaSystemLocation, visaGroupId } = this.config.workflows.getAvailableAppointmentConsulates;
-        await this.page.goto(`https://ais.usvisa-info.com/${visaSystemLocation}/niv/schedule/${visaGroupId}/appointment`, {
+        console.log('Navigating to appointment page with groupId:', visaGroupId);
+        await this.page.goto(`https://ais.usvisa-info.com/${visaSystemLocation}/niv/schedule/${visaGroupId}/appointment?confirmed_limit_message=1&commit=Continue`, {
             waitUntil: 'networkidle0',
         });
+        console.log('After navigate URL:', this.page.url());
+        console.log('After navigate Title:', await this.page.title());
     }
 }
 exports.default = NavigateToGroupAppointmentWorkflowCommand;

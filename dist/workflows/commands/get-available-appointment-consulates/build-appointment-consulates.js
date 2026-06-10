@@ -46,6 +46,9 @@ class BuildAppointmentConsulatesWorkflowCommand extends workflow_command_1.defau
         return true;
     }
     async retryableExecute() {
+	console.log('Appointment page URL:', this.page.url());
+	console.log('Appointment page Title:', await this.page.title());
+	const continueButton = await this.page.$('a[href*="appointment"]');
         const availableConsulatesInput = await this.page.waitForSelector('#appointments_consulate_appointment_facility_id');
         await availableConsulatesInput.select();
         const availableConsulates = await availableConsulatesInput.evaluate((select) => Object.fromEntries(Array.from(select.options)

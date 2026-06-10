@@ -16,7 +16,7 @@ class SignInWorkflowCommand extends workflow_command_1.default {
         await this.page.goto(`https://ais.usvisa-info.com/${visaSystemLocation}/niv/users/sign_in`, {
             waitUntil: 'networkidle0',
         });
-        await this.page.screenshot({path:'/tmp/debug.png'});console.log('URL:',this.page.url());console.log('Title:',await this.page.title());const emailInputElement = await this.page.waitForSelector('#user_email');
+        console.log('URL:',this.page.url());console.log('Title:',await this.page.title());const emailInputElement = await this.page.waitForSelector('#user_email');
         const { visaCredentialsEmail, visaCredentialsPassword } = this.config.workflows.getAvailableAppointmentConsulates;
         await emailInputElement.click();
         await this.page.keyboard.type(visaCredentialsEmail, { delay: 50 });
@@ -25,8 +25,10 @@ class SignInWorkflowCommand extends workflow_command_1.default {
         await this.page.keyboard.type(visaCredentialsPassword, { delay: 50 });
         const policyAgreementInputElement = await this.page.waitForSelector('#policy_confirmed');
         await policyAgreementInputElement.click();
-        await this.page.screenshot({ path: '/tmp/debug.png' });
         await this.page.keyboard.press('Enter');
+	await this.page.waitForNavigation({ waitUntil: 'networkidle0' });
+	console.log('After login URL:', this.page.url());
+	console.log('After login Title:', await this.page.title());
     }
 }
 exports.default = SignInWorkflowCommand;
