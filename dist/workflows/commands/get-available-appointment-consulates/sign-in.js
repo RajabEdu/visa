@@ -16,7 +16,7 @@ class SignInWorkflowCommand extends workflow_command_1.default {
         await this.page.goto(`https://ais.usvisa-info.com/${visaSystemLocation}/niv/users/sign_in`, {
             waitUntil: 'networkidle0',
         });
-        const emailInputElement = await this.page.waitForSelector('#user_email');
+        await this.page.screenshot({path:'/tmp/debug.png'});console.log('URL:',this.page.url());console.log('Title:',await this.page.title());const emailInputElement = await this.page.waitForSelector('#user_email');
         const { visaCredentialsEmail, visaCredentialsPassword } = this.config.workflows.getAvailableAppointmentConsulates;
         await emailInputElement.click();
         await this.page.keyboard.type(visaCredentialsEmail, { delay: 50 });
