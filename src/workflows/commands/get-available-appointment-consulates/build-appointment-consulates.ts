@@ -33,7 +33,7 @@ export default class BuildAppointmentConsulatesWorkflowCommand extends WorkflowC
       const consulateLogger = this.logger.child({ cityId, cityName });
       await availableConsulatesInput!.select(cityId);
 
-      let consulateAvailableDatesResponse!: puppeteer.HTTPResponse;
+      let consulateAvailableDatesResponse!: any;
 
       await this.page.waitForResponse(async (response) => {
         const responseUrl = response.url();

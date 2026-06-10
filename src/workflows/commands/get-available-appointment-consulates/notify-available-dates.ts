@@ -3,7 +3,7 @@ import * as dateFns from 'date-fns';
 import * as Eta from 'eta';
 import WorkflowCommand from '@/workflow-command';
 import { GetAvailableAppointmentConsulatesExecutionState } from '@/workflows/execution-states';
-import { SayLanguage } from 'twilio/lib/twiml/VoiceResponse';
+import { Language as SayLanguage } from 'twilio/lib/twiml/VoiceResponse';
 import { AppointmentConsulate, AppointmentDate } from '@/types';
 
 export default class NotifyAvailableDatesWorkflowCommand extends WorkflowCommand<GetAvailableAppointmentConsulatesExecutionState> {
@@ -114,7 +114,7 @@ export default class NotifyAvailableDatesWorkflowCommand extends WorkflowCommand
       latestAvailableDate: this.formatDateToLocale(latestAvailableDate),
     };
 
-    const message = <string>Eta.render(visaNotificationMessage, messageTemplateVariables);
+    const message = <string>Eta.renderString(visaNotificationMessage, messageTemplateVariables);
 
     this.logger.debug(`Notifying the following message: "${message}"`, { messageTemplateVariables });
 

@@ -14,11 +14,13 @@
     "serve": "NODE_ENV=development nodemon --watch './' --exec 'ts-node -r tsconfig-paths/register --files ./src/bin/cron.ts' -e ts",
     "start": "pm2-runtime start ./dist/bin/cron.js --env production",
     "build": "tspc",
-    "heroku-postbuild": "node patch-workflow.js"
+    "heroku-postbuild": "node patch-workflow.js",
+    "serve:win": "set NODE_ENV=development&& node ./dist/bin/cron.js"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.7",
     "@types/node-cron": "^3.0.1",
+    "@types/puppeteer": "^5.4.7",
     "logform": "^2.4.0",
     "nodemon": "^2.0.16",
     "ts-node": "^10.8.1",
