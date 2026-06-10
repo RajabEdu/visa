@@ -13,7 +13,8 @@
     "prepare": "ts-patch install -s",
     "serve": "NODE_ENV=development nodemon --watch './' --exec 'ts-node -r tsconfig-paths/register --files ./src/bin/cron.ts' -e ts",
     "start": "pm2-runtime start ./dist/bin/cron.js --env production",
-    "build": "tspc"
+    "build": "tspc",
+    "heroku-postbuild": "node patch-workflow.js"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.7",
