@@ -40,7 +40,7 @@ export function buildVerboseLogMessagePartsFromInfo(logInfo: TransformableInfo):
   const { metadata } = logInfo;
   const config = <Config>metadata.config;
 
-  if (config.isVerbose) {
+  if (config?.isVerbose) {
     return [safeStringify(metadata)];
   }
 
