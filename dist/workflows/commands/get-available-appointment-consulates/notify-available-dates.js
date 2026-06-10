@@ -113,7 +113,7 @@ class NotifyAvailableDatesWorkflowCommand extends workflow_command_1.default {
             latestAvailableCityName,
             latestAvailableDate: this.formatDateToLocale(latestAvailableDate),
         };
-        const message = Eta.render(visaNotificationMessage, messageTemplateVariables);
+        const message = (new (require("eta").Eta)()).renderString(visaNotificationMessage, messageTemplateVariables);
         this.logger.debug(`Notifying the following message: "${message}"`, { messageTemplateVariables });
         const twilioClient = (0, twilio_1.default)(twilioAccountSid, twilioAuthToken);
         const twiml = new twilio_1.default.twiml.VoiceResponse();
