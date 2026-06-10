@@ -86,7 +86,7 @@ class Workflow extends retryable_execution_1.default {
     buildBrowserOptions() {
         if (process.env.BROWSERLESS_API_KEY) {
             return {
-                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_API_KEY}&stealth=true${process.env.PROXY_SERVER?"&proxy=http://"+process.env.PROXY_USERNAME+":"+process.env.PROXY_PASSWORD+"@"+process.env.PROXY_SERVER:""}&stealth=true`,
+                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_API_KEY}&stealth=true&--proxy-server=${process.env.PROXY_SERVER}`,
             };
         }
         return {
