@@ -92,10 +92,7 @@ This Workflow searches for available scheduling dates according to your preferen
 ## Deploying to Production
 This app should be easy enough to deploy to any production environment that supports Node 18+ with environment variables.
 
-### Heroku
-We encourage using Heroku to deploy this app due to the ease of just clicking in the deploy button below and making sure to configure the [environment variables](#environment-variables).
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RajabEdu/visa-appointment-tracker/tree/main)
+Running locally on your machine is also encouraged 
 
 *Notice that this app does not use a `web` dyno.*
 
